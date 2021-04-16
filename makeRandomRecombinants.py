@@ -73,7 +73,6 @@ def makeExamples(myS, myB, myC, myD, myF, myR):
     while len(recSampleToSeq) < myS:
         samples = numpy.random.choice(list(sampleToSeq.keys()), size=2, replace=False)
         mySampleName = 'RECOMB_'+str(myB)+'_'+str(len(recSampleToSeq))+'_'+str(samples[0])+'_'+str(samples[1])
-        print(str(len(recSampleToSeq)))
         s1 = samples[0]
         s2 = samples[1]
         if myB == 1:
@@ -89,7 +88,7 @@ def makeExamples(myS, myB, myC, myD, myF, myR):
             bp2 = bps[1]
             mySeq = sampleToSeq[s1][:bp1]+sampleToSeq[s2][bp1:bp2]+sampleToSeq[s1][bp2:]
             myDiff =  minLen(getDiff(sampleToSeq[s1][bp1:bp2], sampleToSeq[s2][bp1:bp2], bp1), getDiff(sampleToSeq[s1][:bp1]+sampleToSeq[s1][bp2:], sampleToSeq[s2][:bp1]+sampleToSeq[s2][bp2:], 0))
-        if 1+myDiff.count(',') >= myD:
+        if len(myDiff) >= myD:
             recSampleToLog[mySampleName] = [samples, bps]
             recSampleToSeq[mySampleName] = mySeq
             recSampleToDiffBetweenBps[mySampleName] = myDiff
