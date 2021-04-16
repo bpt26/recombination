@@ -88,7 +88,7 @@ def makeExamples(myS, myB, myC, myD, myF, myR):
             bp2 = bps[1]
             mySeq = sampleToSeq[s1][:bp1]+sampleToSeq[s2][bp1:bp2]+sampleToSeq[s1][bp2:]
             myDiff =  minLen(getDiff(sampleToSeq[s1][bp1:bp2], sampleToSeq[s2][bp1:bp2], bp1), getDiff(sampleToSeq[s1][:bp1]+sampleToSeq[s1][bp2:], sampleToSeq[s2][:bp1]+sampleToSeq[s2][bp2:], 0))
-        if myDiff >= myD:
+        if 1+myDiff.count(',') >= myD:
             recSampleToLog[mySampleName] = [samples, bps]
             recSampleToSeq[mySampleName] = mySeq
             recSampleToDiffBetweenBps[mySampleName] = myDiff
