@@ -49,12 +49,12 @@ def makeExamples(myS, myB, myC, myD, myF, myR):
     posToRef = {}
     with open(myR) as f:
         for line in f:
-            l = line.strip().upper()
+            l = line.strip()
             if not l.startswith('>'):
-                myReference = l
-                for i in range(0,len(l)):
-                    l[i] != 'N'
-                    posToRef[i] = l[i]
+                myReference = l.upper()
+                for i in range(0,len(myReference)):
+                    if myReference[i] != 'N'
+                        posToRef[i] = myReference[i]
             else:
                 myRefName = l[1:]
 
