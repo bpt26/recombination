@@ -16,8 +16,10 @@ import math
 ##########################
 
 class CommandLine(object):
-    """Handles the input arguments from the command line. Manages 
-    the argument parser."""
+    """
+    Handles the input arguments from the command line. Manages 
+    the argument parser.
+    """
 
     def __init__(self, inOpts=None):
         '''
@@ -141,8 +143,7 @@ def joinerC(entry):
 ##### FUNCTION CALL #####
 #########################
 
-def main():
-    def main(myCommandLine=None):
+def main(myCommandLine=None):
     """
     Initializes a CommandLine object and passes the provided 
     arguments into a new fileConverter object and calls main method.

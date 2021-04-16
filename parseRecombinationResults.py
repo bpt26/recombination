@@ -201,8 +201,7 @@ def joinerC(entry):
 ##### FUNCTION CALL #####
 #########################
 
-def main():
-    def main(myCommandLine=None):
+def main(myCommandLine=None):
     """
     Initializes a CommandLine object and passes the provided 
     arguments into a new fileConverter object and calls main method.
