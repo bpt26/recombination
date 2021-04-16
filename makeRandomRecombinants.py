@@ -53,7 +53,7 @@ def makeExamples(myS, myB, myC, myD, myF, myR):
             if not l.startswith('>'):
                 myReference = l.upper()
                 for i in range(0,len(myReference)):
-                    if myReference[i] != 'N'
+                    if myReference[i] != 'N':
                         posToRef[i] = myReference[i]
             else:
                 myRefName = l[1:]
