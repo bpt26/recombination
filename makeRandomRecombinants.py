@@ -198,7 +198,7 @@ def main(myCommandLine=None):
     if myCommandLine.args.ref:
         myR = myCommandLine.args.ref
 
-    makeExamples(myS, myB, myC, myF, myR)
+    makeExamples(myS, myB, myC, myD, myF, myR)
 
 if __name__ == "__main__":
     """
