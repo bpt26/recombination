@@ -33,7 +33,7 @@ Options:
 ## Example pipeline:
 
 ```
-matUtils extract -i input.pb -A samples.tsv -L num_leaves.tsv
+matUtils extract -i input.pb -S samples.tsv -L num_leaves.tsv
 python makeInternalNodeMSA.py -s samples.tsv -l num_leaves.tsv -r wuhan.ref.fa
 python makeRandomRecombinants.py -b 1 -s 100 -c 10 -d 10 -f internal_nodes.msa.fa -r wuhan.ref.fa
 faToVcf recombination_1.msa.fa recombination_1.msa.vcf
