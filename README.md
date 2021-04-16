@@ -5,6 +5,7 @@ This repository contains scripts to create a multiple-sequence alignment of reco
 #### Summary:
 
 - *makeInternalNodeMSA.py* generates a MSA of the internal nodes from the initial tree with at least 10 descendants.
+--- test
 - *makeRandomRecombinants.py* generates a MSA of recombinant samples from the internal node sequences.
 - *parseRecombinationResults.py* reads in results from findRecombination, as well as the log and msa corresponding to the recombinant sequences, and prints the recombinant samples whose breakpoint was predicted incorrectly.
 
