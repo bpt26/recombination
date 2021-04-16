@@ -72,7 +72,7 @@ def makeExamples(myS, myB, myC, myD, myF, myR):
     recSampleToDiffBetweenBps = {}
     while len(recSampleToSeq) < myS:
         samples = numpy.random.choice(list(sampleToSeq.keys()), size=2, replace=False)
-        mySampleName = 'RECOMB_'+str(myB)+'_'+str(r)+'_'+str(samples[0])+'_'+str(samples[1])
+        mySampleName = 'RECOMB_'+str(myB)+'_'+str(len(recSampleToSeq))+'_'+str(samples[0])+'_'+str(samples[1])
         s1 = samples[0]
         s2 = samples[1]
         if myB == 1:
