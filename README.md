@@ -19,7 +19,7 @@ Options:
 - -c (--copies): Number of identical copies to make for each recombinant sample (Default = 10).  
 - -d (--differences): Minimum mutational distance for acceptor/donor samples (Default = 10).  
 - -f (--fasta): Fasta file containing sequences for acceptor/donor samples. [REQUIRED]  
-- -r (--ref): Fasta file containing reference genome for use in creating VCF. (Default = 'wuhan.ref.fa').  
+- -r (--reference): Fasta file containing reference genome for use in creating VCF. (Default = 'wuhan.ref.fa').  
 
 
 ### parseRecombinationResults.py
