@@ -12,7 +12,7 @@ Options:
 - -r (--reference): Reference genome, used to generate VCF. Default = 'wuhan.ref.fa' (in this repository, corresponds to [the reference genome of SARS-CoV-2](https://www.ncbi.nlm.nih.gov/nuccore/1798174254) with [problematic sites](https://raw.githubusercontent.com/W-L/ProblematicSites_SARS-CoV2/master/problematic_sites_sarsCov2.vcf) masked.).
 
 ### makeRandomRecombinants.py
-generates a MSA of recombinant samples from the internal node sequences.
+generates a MSA of recombinant samples from the internal node sequences.  
 Options:
 - -b (--breakpoints): Number of breakpoints that each recombinant sample will have. Must be 1 or 2 (Default = 1).  
 - -s (--samples): Number of recombinant samples to create (Default = 100).  
@@ -23,7 +23,7 @@ Options:
 
 
 ### parseRecombinationResults.py
-reads in results from findRecombination, as well as the log and msa corresponding to the recombinant sequences, and prints the recombinant samples whose breakpoint was predicted incorrectly.
+reads in results from findRecombination, as well as the log and msa corresponding to the recombinant sequences, and prints the recombinant samples whose breakpoint was predicted incorrectly.  
 Options:
 - -f (--fasta): Fasta file containing sequences for recombinant genomes. [REQUIRED]  
 - -l (--log): Log file containing recombinant genomes. Format: recombinantSample sample1 sample2 bp1 (bp2).... [REQUIRED]  
