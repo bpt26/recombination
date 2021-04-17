@@ -73,7 +73,6 @@ def parseDescRec(myF, myL, myD, myR):
     with open(myR) as f:
         for line in f:
             splitLine = (line.strip()).split('\t')
-            print(splitLine)
             if not splitLine[0].startswith('#'):
                 if not int(splitLine[0]) in nodeIdToBreakPoints:
                     nodeIdToBreakPoints[int(splitLine[0])] = []
