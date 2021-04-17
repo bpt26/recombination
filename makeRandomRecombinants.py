@@ -99,6 +99,7 @@ def makeExamples(myS, myB, myC, myD, myF, mym, myM, myR):
                     myMuts.append(myMut)
                 for m in myMuts:
                     recSampleToLog[mySampleName].append(m)
+                    print(m)
             recSampleToSeq[mySampleName] = mySeq
             recSampleToDiffBetweenBps[mySampleName] = myDiff
 
@@ -130,7 +131,7 @@ def makeExamples(myS, myB, myC, myD, myF, mym, myM, myR):
 ##########################
 
 def addMut(seq, pos):
-    print(pos, len(seq))
+    #print(pos, len(seq))
     myReturn = []
     for i in range(0,len(seq)):
         if i != int(pos):
