@@ -148,10 +148,9 @@ def parseDescRec2(myF, myL, myD, myR):
                 nodeIdToBreakPoints[int(splitLine[0])].append(tempList)
 
     sampleToCorrectBreakPoints = {}
-    for s in sampleToBreakPoints:
+    for s in sampleToRecNodeIds:
         sampleToCorrectBreakPoints[s] = False
-        bp1 = sampleToBreakPoints[s][0]
-        bp2 = sampleToBreakPoints[s][1]
+        bp = sampleToBreakPoints[s]
         for n in sampleToRecNodeIds[s]:
             for l in nodeIdToBreakPoints[n]:
                 if (bp1 > l[0] and bp1 < l[1] and bp2 > l[2] and bp2 < l[3]):
