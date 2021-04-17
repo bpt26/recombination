@@ -116,7 +116,7 @@ def parseDescRec2(myF, myL, myD, myR):
     with open(myL) as f:
         for line in f:
             splitLine = (line.strip()).split('\t')
-            if splitLine[0]+'_X0' in mySamples:
+            if splitLine[0] in mySamples:
                 sampleToBreakPoints[splitLine[0]] = [int(splitLine[3]), int(splitLine[4])]
 
     sampleToRecNodeIds = {}

@@ -115,11 +115,11 @@ def makeExamples(myS, myB, myC, myD, myF, mym, myM, myR):
                     myMuts.append(myMut)
                 myOutMSA += '>'+s+'_X'+str(x)+'\n'+mySeq+'\n'
                 myOutLog += s+'_X'+str(x)+'\t'+doubleJoiner(recSampleToLog[s])+'\t'+joiner(myMuts)+'\n'
-                myOutDiff += s+'\t'+joinerC(recSampleToDiffBetweenBps[s])+'\n'
+                myOutDiff += s+'_X'+str(x)+'\t'+joinerC(recSampleToDiffBetweenBps[s])+'\n'
             else:
                 myOutMSA += '>'+s+'_X'+str(x)+'\n'+recSampleToSeq[s]+'\n'
                 myOutLog += s+'_X'+str(x)+'\t'+doubleJoiner(recSampleToLog[s])+'\n'
-                myOutDiff += s+'\t'+joinerC(recSampleToDiffBetweenBps[s])+'\n'
+                myOutDiff += s+'_X'+str(x)+'\t'+joinerC(recSampleToDiffBetweenBps[s])+'\n'
     open('recombination_'+str(myB)+'.msa.fa','w').write(myOutMSA)
     open('recombination_'+str(myB)+'.log','w').write(myOutLog)
     open('recombination_'+str(myB)+'.differences.txt','w').write(myOutDiff)
