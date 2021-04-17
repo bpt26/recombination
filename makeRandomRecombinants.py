@@ -29,6 +29,8 @@ class CommandLine(object):
         self.parser.add_argument("-b", "--breakpoints", help="Number of breakpoints that each recombinant sample will have. Must be 1 or 2 (Default = 1).", default=1, type=int)
         self.parser.add_argument("-s", "--samples", help="Number of recombinant samples to create (Default = 100).", default=100, type=int)
         self.parser.add_argument("-c", "--copies", help="Number of identical copies to make for each recombinant sample (Default = 10).", default=10, type=int)
+        self.parser.add_argument("-m", "--commonMutations", help="Number of mutations to add to each copy, shared by all in a set. (Default = 0).", default=0, type=int)
+        self.parser.add_argument("-M", "--randomMutations", help="Number of mutations to add to each copy, randomly chosen for each copy. (Default = 0).", default=0, type=int)
         self.parser.add_argument("-d", "--differences", help="Minimum mutational distance for acceptor/donor samples (Default = 10).", default=10, type=int)
         self.parser.add_argument("-f", "--fasta", help="Fasta file containing sequences for acceptor/donor samples. [REQUIRED]", default='')
         self.parser.add_argument("-r", "--ref", help="Fasta file containing reference genome for use in creating VCF. (Default = 'wuhan.ref.fa').", default='wuhan.ref.fa')
@@ -90,6 +92,13 @@ def makeExamples(myS, myB, myC, myD, myF, myR):
             myDiff =  minLen(getDiff(sampleToSeq[s1][bp1:bp2], sampleToSeq[s2][bp1:bp2], bp1), getDiff(sampleToSeq[s1][:bp1]+sampleToSeq[s1][bp2:], sampleToSeq[s2][:bp1]+sampleToSeq[s2][bp2:], 0))
         if len(myDiff) >= myD:
             recSampleToLog[mySampleName] = [samples, bps]
+            if mym > 0:
+                myMuts = []
+                for m in range(0, mym):
+                    mySeq, myMut = addMut(mySeq, numpy.random.choice(sorted(list(posToRef.keys()))[5000:-5000],size=1, replace=False)[0])
+                    myMuts.append(myMut)
+                for m in myMuts:
+                    recSampleToLog[mySampleName].append(m)
             recSampleToSeq[mySampleName] = mySeq
             recSampleToDiffBetweenBps[mySampleName] = myDiff
 
@@ -99,9 +108,19 @@ def makeExamples(myS, myB, myC, myD, myF, myR):
 
     for s in recSampleToSeq:
         for x in range(0,myC):
-            myOutMSA += '>'+s+'_X'+str(x)+'\n'+recSampleToSeq[s]+'\n'
-        myOutLog += s+'\t'+doubleJoiner(recSampleToLog[s])+'\n'
-        myOutDiff += s+'\t'+joinerC(recSampleToDiffBetweenBps[s])+'\n'
+            if myM > 0:
+                myMuts = []
+                mySeq = recSampleToSeq[s]
+                for m in range(0, myM):
+                    mySeq, myMut = addMut(mySeq, numpy.random.choice(sorted(list(posToRef.keys()))[5000:-5000],size=1, replace=False)[0])
+                    myMuts.append(myMut)
+                myOutMSA += '>'+s+'_X'+str(x)+'\n'+recSampleToSeq[s]+'\n'
+                myOutLog += s+'_X'+str(x)+'\t'+doubleJoiner(recSampleToLog[s])+'\t'+joiner(myMuts)+'\n'
+                myOutDiff += s+'\t'+joinerC(recSampleToDiffBetweenBps[s])+'\n'
+            else:
+                myOutMSA += '>'+s+'_X'+str(x)+'\n'+recSampleToSeq[s]+'\n'
+                myOutLog += s+'_X'+str(x)+'\t'+doubleJoiner(recSampleToLog[s])+'\n'
+                myOutDiff += s+'\t'+joinerC(recSampleToDiffBetweenBps[s])+'\n'
     open('recombination_'+str(myB)+'.msa.fa','w').write(myOutMSA)
     open('recombination_'+str(myB)+'.log','w').write(myOutLog)
     open('recombination_'+str(myB)+'.differences.txt','w').write(myOutDiff)
@@ -195,10 +214,14 @@ def main(myCommandLine=None):
         myD = myCommandLine.args.differences
     if myCommandLine.args.fasta:
         myF = myCommandLine.args.fasta
+    if myCommandLine.args.commonMutations:
+        mym = myCommandLine.args.commonMutations
+    if myCommandLine.args.randomMutations:
+        myM = myCommandLine.args.randomMutations
     if myCommandLine.args.ref:
         myR = myCommandLine.args.ref
 
-    makeExamples(myS, myB, myC, myD, myF, myR)
+    makeExamples(myS, myB, myC, myD, myF, mym, myM, myR)
 
 if __name__ == "__main__":
     """
@@ -206,28 +229,6 @@ if __name__ == "__main__":
     """
     main();
     raise SystemExit
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 if __name__ == "__main__":
     """
