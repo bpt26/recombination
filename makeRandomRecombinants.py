@@ -216,10 +216,16 @@ def main(myCommandLine=None):
         myF = myCommandLine.args.fasta
     if myCommandLine.args.commonMutations:
         mym = myCommandLine.args.commonMutations
+    else:
+        mym = 0
     if myCommandLine.args.randomMutations:
         myM = myCommandLine.args.randomMutations
+    else:
+        myM = 0
     if myCommandLine.args.ref:
         myR = myCommandLine.args.ref
+    else:
+        myR = 'wuhan.ref.fa'
 
     makeExamples(myS, myB, myC, myD, myF, mym, myM, myR)
 
