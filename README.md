@@ -39,5 +39,5 @@ python makeRandomRecombinants.py -b 1 -s 100 -c 10 -d 10 -f internal_nodes.msa.f
 faToVcf recombination_1.msa.fa recombination_1.msa.vcf
 usher -i input.pb -v recombination_1.msa.vcf -o recombination_1.msa.pb
 findRecombination -i recombination_1.msa.pb
-python parseRecombinationResults.py -f recombination_1.msa.fa -l recombination_1.log -d descendants.tsv -r recombination.tsv
+python parseRecombinationResults.py -f recombination_1.msa.fa -l recombination_1.log -d descendants.tsv -r recombination.tsv -b 1
 ```
