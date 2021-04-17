@@ -18,6 +18,8 @@ Options:
 - -s (--samples): Number of recombinant samples to create (Default = 100).  
 - -c (--copies): Number of identical copies to make for each recombinant sample (Default = 10).  
 - -d (--differences): Minimum mutational distance for acceptor/donor samples (Default = 10).  
+-m (--commonMutations): Number of mutations to add to each copy, shared by all in a set. (Default = 0).  
+-M (--randomMutations): Number of mutations to add to each copy, randomly chosen for each copy. (Default = 0).  
 - -f (--fasta): Fasta file containing sequences for acceptor/donor samples. [REQUIRED]  
 - -r (--reference): Fasta file containing reference genome for use in creating VCF. (Default = 'wuhan.ref.fa').  
 
@@ -29,6 +31,7 @@ Options:
 - -l (--log): Log file containing recombinant genomes. Format: recombinantSample sample1 sample2 bp1 (bp2).... [REQUIRED]  
 - -d (--descendants): Descendants file output by findRecombination. (Default = 'descendants.tsv').  
 - -r (--recombination): Recombination file output by findRecombination. (Default = 'recombination.tsv').  
+- -b (--breakpoints): Number of breakpoints that each recombinant sample has. Must be 1 or 2 (Default = 1).  
 
 ## Example pipeline:
 
