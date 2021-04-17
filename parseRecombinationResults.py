@@ -61,7 +61,7 @@ def parseDescRec(myF, myL, myD, myR):
     with open(myD) as f:
         for line in f:
             splitLine = (line.strip()).split('\t')
-            if not splitLine[0].startswith('#'):
+            if len(splitLine) == 2 and not splitLine[0].startswith('#'):
                 mySamples = splitLine[1].split(',')
                 for k in mySamples:
                     if k in sampleToBreakPoints:
