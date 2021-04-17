@@ -31,6 +31,7 @@ class CommandLine(object):
         self.parser.add_argument("-l", "--log", help="Log file containing recombinant genomes. Format: recombinantSample sample1 sample2 bp1 (bp2)... [REQUIRED]",default='')
         self.parser.add_argument('-d', '--descendants', help="Descendants file output by findRecombination. (Default = 'descendants.tsv').",default='descendants.tsv')
         self.parser.add_argument('-r', '--recombination', help="Recombination file output by findRecombination. (Default = 'recombination.tsv').",default='recombination.tsv')
+        self.parser.add_argument("-b", "--breakpoints", help="Number of breakpoints that each recombinant sample has. Must be 1 or 2 (Default = 1).", default=1, type=int)
         if inOpts is None:
             self.args = vars(self.parser.parse_args())
         else:
@@ -218,12 +219,12 @@ def main(myCommandLine=None):
         myD = myCommandLine.args.descendants
     if myCommandLine.args.recombination:
         myR = myCommandLine.args.recombination
+    if myCommandLine.args.breakpoints:
+        myB = myCommandLine.args.breakpoints
+    else:
+        myB = 1
 
-    with open(myL) as f:
-        for line in f:
-            splitLine = (line.strip()).split('\t')
-            myLen = len(splitLine)
-    if myLen == 4:
+    if myB == 1:
         parseDescRec(myF, myL, myD, myR)
     else:
         parseDescRec2(myF, myL, myD, myR)
