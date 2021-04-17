@@ -55,13 +55,13 @@ def parseDescRec(myF, myL, myD, myR):
         for line in f:
             splitLine = (line.strip()).split('\t')
             if splitLine[0] in mySamples:
-                sampleToBreakPoints[splitLine[0]+'_X0'] = int(splitLine[3])
+                sampleToBreakPoints[splitLine[0]] = int(splitLine[3])
 
     sampleToRecNodeIds = {}
     with open(myD) as f:
         for line in f:
             splitLine = (line.strip()).split('\t')
-            if len(splitLine) == 2 and not splitLine[0].startswith('#'):
+            if not splitLine[0].startswith('#'):
                 mySamples = splitLine[1].split(',')
                 for k in mySamples:
                     if k in sampleToBreakPoints:
@@ -73,6 +73,7 @@ def parseDescRec(myF, myL, myD, myR):
     with open(myR) as f:
         for line in f:
             splitLine = (line.strip()).split('\t')
+            print(splitLine)
             if not splitLine[0].startswith('#'):
                 if not int(splitLine[0]) in nodeIdToBreakPoints:
                     nodeIdToBreakPoints[int(splitLine[0])] = []
@@ -86,7 +87,7 @@ def parseDescRec(myF, myL, myD, myR):
                 nodeIdToBreakPoints[int(splitLine[0])].append(tempList)
 
     sampleToCorrectBreakPoints = {}
-    for s in sampleToBreakPoints:
+    for s in sampleToRecNodeIds:
         sampleToCorrectBreakPoints[s] = False
         bp = sampleToBreakPoints[s]
         for n in sampleToRecNodeIds[s]:
@@ -117,7 +118,7 @@ def parseDescRec2(myF, myL, myD, myR):
         for line in f:
             splitLine = (line.strip()).split('\t')
             if splitLine[0]+'_X0' in mySamples:
-                sampleToBreakPoints[splitLine[0]+'_X0'] = [int(splitLine[3]), int(splitLine[4])]
+                sampleToBreakPoints[splitLine[0]] = [int(splitLine[3]), int(splitLine[4])]
 
     sampleToRecNodeIds = {}
     with open(myD) as f:
