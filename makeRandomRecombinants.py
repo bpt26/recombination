@@ -47,7 +47,7 @@ class CommandLine(object):
 ##### MAIN FUNCTIONS #####
 ##########################
 
-def makeExamples(myS, myB, myC, myD, myF, myR):
+def makeExamples(myS, myB, myC, myD, myF, mym, myM, myR):
     posToRef = {}
     with open(myR) as f:
         for line in f:
