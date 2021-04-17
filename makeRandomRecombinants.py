@@ -113,7 +113,7 @@ def makeExamples(myS, myB, myC, myD, myF, mym, myM, myR):
                 for m in range(0, myM):
                     mySeq, myMut = addMut(mySeq, numpy.random.choice(sorted(list(posToRef.keys()))[5000:-5000],size=1, replace=False)[0])
                     myMuts.append(myMut)
-                myOutMSA += '>'+s+'_X'+str(x)+'\n'+recSampleToSeq[s]+'\n'
+                myOutMSA += '>'+s+'_X'+str(x)+'\n'+mySeq+'\n'
                 myOutLog += s+'_X'+str(x)+'\t'+doubleJoiner(recSampleToLog[s])+'\t'+joiner(myMuts)+'\n'
                 myOutDiff += s+'\t'+joinerC(recSampleToDiffBetweenBps[s])+'\n'
             else:
