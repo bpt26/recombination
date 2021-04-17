@@ -97,9 +97,7 @@ def makeExamples(myS, myB, myC, myD, myF, mym, myM, myR):
                 for m in range(0, mym):
                     mySeq, myMut = addMut(mySeq, numpy.random.choice(sorted(list(posToRef.keys()))[5000:-5000],size=1, replace=False)[0])
                     myMuts.append(myMut)
-                for m in myMuts:
-                    recSampleToLog[mySampleName].append(m)
-                    print(m)
+                recSampleToLog[mySampleName].append(myMuts)
             recSampleToSeq[mySampleName] = mySeq
             recSampleToDiffBetweenBps[mySampleName] = myDiff
 
