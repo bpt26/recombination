@@ -22,6 +22,7 @@ Options:
 - -M (--randomMutations): Number of mutations to add to each copy, randomly chosen for each copy. (Default = 0).  
 - -f (--fasta): Fasta file containing sequences for acceptor/donor samples. [REQUIRED]  
 - -r (--reference): Fasta file containing reference genome for use in creating VCF. (Default = 'wuhan.ref.fa').  
+- -S (--separate): If enabled, will produce one for each set of recombinants to the argument directory. If not enabled, will not produce these files.  
 
 
 ### parseRecombinationResults.py
