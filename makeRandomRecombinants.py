@@ -34,6 +34,7 @@ class CommandLine(object):
         self.parser.add_argument("-d", "--differences", help="Minimum mutational distance for acceptor/donor samples (Default = 10).", default=10, type=int)
         self.parser.add_argument("-f", "--fasta", help="Fasta file containing sequences for acceptor/donor samples. [REQUIRED]", default='')
         self.parser.add_argument("-r", "--ref", help="Fasta file containing reference genome for use in creating VCF. (Default = 'wuhan.ref.fa').", default='wuhan.ref.fa')
+        self.parser.add_argument("-S", "--separate", help="If enabled, will produce one for each set of recombinants to the argument directory. If not enabled, will not produce these files.",default=False)
         if inOpts is None:
             self.args = vars(self.parser.parse_args())
         else:
@@ -47,7 +48,7 @@ class CommandLine(object):
 ##### MAIN FUNCTIONS #####
 ##########################
 
-def makeExamples(myS, myB, myC, myD, myF, mym, myM, myR):
+def makeExamples(myS, myB, myC, myD, myF, mym, myM, myR, mySep):
     posToRef = {}
     with open(myR) as f:
         for line in f:
@@ -102,10 +103,11 @@ def makeExamples(myS, myB, myC, myD, myF, mym, myM, myR):
             recSampleToDiffBetweenBps[mySampleName] = myDiff
 
     myOutMSA = '>'+myRefName+'\n'+myReference+'\n'
+    mySepMSAs = []
     myOutLog = ''
     myOutDiff = ''
-
     for s in recSampleToSeq:
+        tempMSA = '>'+myRefName+'\n'+myReference+'\n'
         for x in range(0,myC):
             if myM > 0:
                 myMuts = []
@@ -114,15 +116,27 @@ def makeExamples(myS, myB, myC, myD, myF, mym, myM, myR):
                     mySeq, myMut = addMut(mySeq, numpy.random.choice(sorted(list(posToRef.keys()))[5000:-5000],size=1, replace=False)[0])
                     myMuts.append(myMut)
                 myOutMSA += '>'+s+'_X'+str(x)+'\n'+mySeq+'\n'
+                tempMSA += '>'+s+'_X'+str(x)+'\n'+mySeq+'\n'
                 myOutLog += s+'_X'+str(x)+'\t'+doubleJoiner(recSampleToLog[s])+'\t'+joiner(myMuts)+'\n'
                 myOutDiff += s+'_X'+str(x)+'\t'+joinerC(recSampleToDiffBetweenBps[s])+'\n'
             else:
                 myOutMSA += '>'+s+'_X'+str(x)+'\n'+recSampleToSeq[s]+'\n'
+                tempMSA += '>'+s+'_X'+str(x)+'\n'+mySeq+'\n'
                 myOutLog += s+'_X'+str(x)+'\t'+doubleJoiner(recSampleToLog[s])+'\n'
                 myOutDiff += s+'_X'+str(x)+'\t'+joinerC(recSampleToDiffBetweenBps[s])+'\n'
+        mySepMSAs.append(tempMSA)
     open('recombination_'+str(myB)+'.msa.fa','w').write(myOutMSA)
     open('recombination_'+str(myB)+'.log','w').write(myOutLog)
     open('recombination_'+str(myB)+'.differences.txt','w').write(myOutDiff)
+
+    myOutFaToVcf = ''
+    if mySep != False:
+        if not os.pathexists(mySep):
+            os.mkdir('./'+mySep)
+        for i in range(1,len(mySepMSAs)+1):
+            open('./'+mySep+'/recombinant_set_'+str(i)+'.fa','w').write(mySepMSAs[i-1])
+            myOutFaToVcf += 'faToVcf recombinant_set_'+str(i)+'.fa recombinant_set_'+str(i)+'.vcf\n'
+        open('./'+mySep+'/makeSetVCFs.sh','w').write(myOutFaToVcf)
 
 ##########################
 #### HELPER FUNCTIONS ####
@@ -225,8 +239,12 @@ def main(myCommandLine=None):
         myR = myCommandLine.args.ref
     else:
         myR = 'wuhan.ref.fa'
+    if myCommandLine.args.separate:
+        mySep = myCommandLine.args.separate
+    else:
+        mySep = False
 
-    makeExamples(myS, myB, myC, myD, myF, mym, myM, myR)
+    makeExamples(myS, myB, myC, myD, myF, mym, myM, myR, mySep)
 
 if __name__ == "__main__":
     """
