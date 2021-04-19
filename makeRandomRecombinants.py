@@ -34,7 +34,7 @@ class CommandLine(object):
         self.parser.add_argument("-d", "--differences", help="Minimum mutational distance for acceptor/donor samples (Default = 10).", default=10, type=int)
         self.parser.add_argument("-f", "--fasta", help="Fasta file containing sequences for acceptor/donor samples. [REQUIRED]", default='')
         self.parser.add_argument("-r", "--ref", help="Fasta file containing reference genome for use in creating VCF. (Default = 'wuhan.ref.fa').", default='wuhan.ref.fa')
-        self.parser.add_argument("-S", "--separate", help="If enabled, will produce one for each set of recombinants to the argument directory. If not enabled, will not produce these files.",default=False)
+        self.parser.add_argument("-S", "--separate", help="If enabled, will produce one MSA as a .fasta file for each set of recombinants to the argument directory. If not enabled, will not produce these files.",default=False)
         if inOpts is None:
             self.args = vars(self.parser.parse_args())
         else:
