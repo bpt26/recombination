@@ -131,7 +131,7 @@ def makeExamples(myS, myB, myC, myD, myF, mym, myM, myR, mySep):
 
     myOutFaToVcf = ''
     if mySep != False:
-        if not os.pathexists(mySep):
+        if not os.path.exists(mySep):
             os.mkdir('./'+mySep)
         for i in range(1,len(mySepMSAs)+1):
             open('./'+mySep+'/recombinant_set_'+str(i)+'.fa','w').write(mySepMSAs[i-1])
