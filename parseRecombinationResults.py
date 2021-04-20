@@ -95,7 +95,7 @@ def parseDescRec(myF, myL, myD, myR):
                     sampleToCorrectBreakPoints[s] = True
 
     tf = [0,0]
-    for k in sampleToCorrectBreakPoints:
+    for k in sorted(sampleToCorrectBreakPoints.keys()):
         if sampleToCorrectBreakPoints[k] == True:
             tf[0] += 1
         else:
@@ -103,7 +103,7 @@ def parseDescRec(myF, myL, myD, myR):
             print(k+' has incorrect breakpoint predictions.')
 
     notFound = 0
-    for k in sampleToBreakPoints:
+    for k in sorted(sampleToBreakPoints.keys()):
         if not k in sampleToCorrectBreakPoints:
             print(k+' not found in descendants file.')
             notFound += 1
@@ -166,7 +166,7 @@ def parseDescRec2(myF, myL, myD, myR):
                     sampleToCorrectBreakPoints[s] = True
 
     tf = [0,0]
-    for k in sampleToCorrectBreakPoints:
+    for k in sorted(sampleToCorrectBreakPoints.keys()):
         if sampleToCorrectBreakPoints[k] == True:
             tf[0] += 1
         else:
@@ -174,7 +174,7 @@ def parseDescRec2(myF, myL, myD, myR):
             print(k+' has incorrect breakpoint predictions.')
 
     notFound = 0
-    for k in sampleToBreakPoints:
+    for k in sorted(sampleToBreakPoints.keys()):
         if not k in sampleToCorrectBreakPoints:
             print(k+' not found in descendants file.')
             notFound += 1
