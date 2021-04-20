@@ -171,8 +171,16 @@ def parseDescRec2(myF, myL, myD, myR):
             tf[0] += 1
         else:
             tf[1] += 1
-            print(k)
-    print(tf)
+            print(k+' has incorrect breakpoint predictions.')
+
+    notFound = 0
+    for k in sampleToBreakPoints:
+        if not k in sampleToCorrectBreakPoints:
+            print(k+' not found in descendants file.')
+            notFound += 1
+
+    print(str(tf[0])+' samples with correct breakpoints inferred. '+str(tf[1])+' samples with incorrect breakpoints inferred. '+
+        str(notFound)+' samples not in descendants file.')
 
 ##########################
 #### HELPER FUNCTIONS ####
