@@ -121,7 +121,7 @@ def makeExamples(myS, myB, myC, myD, myF, mym, myM, myR, mySep):
                 myOutDiff += s+'_X'+str(x)+'\t'+joinerC(recSampleToDiffBetweenBps[s])+'\n'
             else:
                 myOutMSA += '>'+s+'_X'+str(x)+'\n'+recSampleToSeq[s]+'\n'
-                tempMSA += '>'+s+'_X'+str(x)+'\n'+mySeq+'\n'
+                tempMSA += '>'+s+'_X'+str(x)+'\n'+recSampleToSeq[s]+'\n'
                 myOutLog += s+'_X'+str(x)+'\t'+doubleJoiner(recSampleToLog[s])+'\n'
                 myOutDiff += s+'_X'+str(x)+'\t'+joinerC(recSampleToDiffBetweenBps[s])+'\n'
         mySepMSAs.append(tempMSA)
