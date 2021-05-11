@@ -158,7 +158,7 @@ def main(myCommandLine=None):
     if myCommandLine.args.leaves:
         myL = myCommandLine.args.leaves
     if myCommandLine.args.threshold:
-        myT = myCommandLine.args.threshold
+        myT = int(myCommandLine.args.threshold)
     else:
         myT = 10
     if myCommandLine.args.ref:
