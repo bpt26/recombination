@@ -31,6 +31,7 @@ class CommandLine(object):
         self.parser.add_argument("-s", "--samples", help="Sample mutation paths file. To generate: matUtils extract -i <input.pb> -A <sample-paths.tsv>. [REQUIRED]", default='')
         self.parser.add_argument("-l", "--leaves", help="File containing number of leaves for each node. Only nodes with at least 10 descendants will be used, "+
             "as this is required for detection. To generate: matUtils extract -i <input.pb -L <num-leaves.tsv>. [REQUIRED]", default='')
+        self.parser.add_argument("-t", "--threshold", help="By default, this script includes only nodes with at least 10 descendant leaves. To use a different minimum, specify here.",default=10)
         self.parser.add_argument("-r", "--ref", help="Fasta file containing reference genome. (Default = 'wuhan.ref.fa').", default='wuhan.ref.fa')
         
         if inOpts is None:
@@ -43,7 +44,7 @@ class CommandLine(object):
 ##### MAIN FUNCTIONS #####
 ##########################
 
-def getMutationsFile(myS, myL, myR):
+def getMutationsFile(myS, myL, myT, myR):
     myReference = ''
     with open(myR) as f:
         for line in f:
@@ -80,7 +81,7 @@ def getMutationsFile(myS, myL, myR):
     with open(myL) as f:
         for line in f:
             splitLine = (line.strip()).split('\t')
-            if splitLine[0].isdigit() and int(splitLine[1]) >= 10:
+            if splitLine[0].isdigit() and int(splitLine[1]) >= myT:
                 goodNodes[int(splitLine[0])] = True
 
     myOutMSA = ''
@@ -156,10 +157,14 @@ def main(myCommandLine=None):
         myS = myCommandLine.args.samples
     if myCommandLine.args.leaves:
         myL = myCommandLine.args.leaves
+    if CommandLine.args.threshold:
+        myT = myCommandLine.args.threshold
+    else:
+        myT = 10
     if myCommandLine.args.ref:
         myR = myCommandLine.args.ref
 
-    getMutationsFile(myS, myL, myR)
+    getMutationsFile(myS, myL, myT, myR)
 
 
 if __name__ == "__main__":
