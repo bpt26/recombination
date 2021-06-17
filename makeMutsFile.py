@@ -170,7 +170,7 @@ def joinerC(entry):
     return ','.join(newList)
 
 #########################
-##### FUNCTION CALL #####wuhan.ref.fa
+##### FUNCTION CALL #####
 #########################
 
 def main(myCommandLine=None):
