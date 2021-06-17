@@ -193,9 +193,9 @@ def makeExamples(myS, myB, myC, myD, myF, myT, mym, myM, myR, mySep):
                 myOutLog += s+'_X'+str(x)+'\t'+doubleJoiner(recSampleToLog[s])+'\n'
                 myOutDiff += s+'_X'+str(x)+'\t'+joinerC(recSampleToDiffBetweenBps[s])+'\n'
         mySepMSAs.append(tempMSA)
-    open('recombination_'+str(myB)+'_'+str(myC)+'_'+str(M)+'.msa.fa','w').write(myOutMSA)
-    open('recombination_'+str(myB)+'_'+str(myC)+'_'+str(M)+'.log','w').write(myOutLog)
-    open('recombination_'+str(myB)+'_'+str(myC)+'_'+str(M)+'.differences.txt','w').write(myOutDiff)
+    open('recombination_'+str(myB)+'_'+str(myC)+'_'+str(myM)+'.msa.fa','w').write(myOutMSA)
+    open('recombination_'+str(myB)+'_'+str(myC)+'_'+str(myM)+'.log','w').write(myOutLog)
+    open('recombination_'+str(myB)+'_'+str(myC)+'_'+str(myM)+'.differences.txt','w').write(myOutDiff)
 
     myOutFaToVcf = ''
     if mySep != False:
