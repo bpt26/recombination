@@ -112,23 +112,23 @@ def makeExamples(myS, myB, myC, myD, myF, myT, mym, myM, myR, mySep):
 
         ### Create recombinant sequence from our two samples
         if myB == 1:
-            bps = numpy.random.choice(sorted(list(posToRef.keys()))[5000:-5000],size=1, replace=False)
+            bps = numpy.random.choice(sorted(list(posToRef.keys())),size=1, replace=False)
             bp1 = bps[0]
             mySeq = sampleToSeq[s1][:bp1]+sampleToSeq[s2][bp1:]
             myDiff = minLen(getDiff(sampleToSeq[s1][:bp1], sampleToSeq[s2][:bp1], 0), getDiff(sampleToSeq[s1][bp1:], sampleToSeq[s2][bp1:], bp1))
             print(myDiff)
         elif myB == 2:
-            bps = sorted(numpy.random.choice(sorted(list(posToRef.keys()))[5000:-5000],size=2, replace=False))
+            bps = sorted(numpy.random.choice(sorted(list(posToRef.keys())),size=2, replace=False))
             while bps[1]-bps[0] <= 1000:
-                bps = sorted(numpy.random.choice(sorted(list(posToRef.keys()))[5000:-5000],size=2, replace=False))
+                bps = sorted(numpy.random.choice(sorted(list(posToRef.keys())),size=2, replace=False))
             bp1 = bps[0]
             bp2 = bps[1]
             mySeq = sampleToSeq[s1][:bp1]+sampleToSeq[s2][bp1:bp2]+sampleToSeq[s1][bp2:]
             myDiff =  minLen(getDiff(sampleToSeq[s1][bp1:bp2], sampleToSeq[s2][bp1:bp2], bp1), getDiff(sampleToSeq[s1][:bp1]+sampleToSeq[s1][bp2:], sampleToSeq[s2][:bp1]+sampleToSeq[s2][bp2:], 0))
         elif myB == 3:
-            bps = sorted(numpy.random.choice(sorted(list(posToRef.keys()))[5000:-5000],size=3, replace=False))
+            bps = sorted(numpy.random.choice(sorted(list(posToRef.keys())),size=3, replace=False))
             while bps[1]-bps[0] <= 1000 or bps[2]-bps[1] <= 1000:
-                bps = sorted(numpy.random.choice(sorted(list(posToRef.keys()))[5000:-5000],size=3, replace=False))
+                bps = sorted(numpy.random.choice(sorted(list(posToRef.keys())),size=3, replace=False))
             bp1 = bps[0]
             bp2 = bps[1]
             bp3 = bps[2]
@@ -137,9 +137,9 @@ def makeExamples(myS, myB, myC, myD, myF, myT, mym, myM, myR, mySep):
             diff2 = getDiff(sampleToSeq[s1][:bp1]+sampleToSeq[s1][bp2:bp3], sampleToSeq[s2][:bp1]+sampleToSeq[s2][bp2:bp3], 0)
             myDiff =  minLen(diff1, diff2)
         elif myB == 4:
-            bps = sorted(numpy.random.choice(sorted(list(posToRef.keys()))[5000:-5000],size=4, replace=False))
+            bps = sorted(numpy.random.choice(sorted(list(posToRef.keys())),size=4, replace=False))
             while bps[1]-bps[0] <= 1000 or bps[2]-bps[1] <= 1000 or bps[3]-bps[2] <= 1000:
-                bps = sorted(numpy.random.choice(sorted(list(posToRef.keys()))[5000:-5000],size=4, replace=False))
+                bps = sorted(numpy.random.choice(sorted(list(posToRef.keys())),size=4, replace=False))
             bp1 = bps[0]
             bp2 = bps[1]
             bp3 = bps[2]
@@ -155,7 +155,7 @@ def makeExamples(myS, myB, myC, myD, myF, myT, mym, myM, myR, mySep):
             if mym > 0: ### Add common mutations here, prior to making copies
                 myMuts = []
                 for m in range(0, mym):
-                    mySeq, myMut = addMut(mySeq, numpy.random.choice(sorted(list(posToRef.keys()))[5000:-5000],size=1, replace=False)[0])
+                    mySeq, myMut = addMut(mySeq, numpy.random.choice(sorted(list(posToRef.keys())),size=1, replace=False)[0])
                     myMuts.append(myMut)
                 recSampleToLog[mySampleName].append(myMuts)
             recSampleToSeq[mySampleName] = mySeq
@@ -181,7 +181,7 @@ def makeExamples(myS, myB, myC, myD, myF, myT, mym, myM, myR, mySep):
                 myMuts = []
                 mySeq = recSampleToSeq[s]
                 for m in range(0, myM):
-                    mySeq, myMut = addMut(mySeq, numpy.random.choice(sorted(list(posToRef.keys()))[5000:-5000],size=1, replace=False)[0])
+                    mySeq, myMut = addMut(mySeq, numpy.random.choice(sorted(list(posToRef.keys())),size=1, replace=False)[0])
                     myMuts.append(myMut)
                 myOutMSA += '>'+s+'_X'+str(x)+'\n'+mySeq+'\n'
                 tempMSA += '>'+s+'_X'+str(x)+'\n'+mySeq+'\n'
