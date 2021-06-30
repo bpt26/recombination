@@ -111,6 +111,7 @@ def makeExamples(myS, myB, myC, myD, myF, myT, mym, myM, myR, mySep):
             sampleToSeq[s2] = addMuts(myReference, nodeToDiffs[s2])
 
         ### Create recombinant sequence from our two samples
+        myTotalDiff = getDiff(sampleToSeq[s1],sampleToSeq[s2])
         if myB == 1:
             bps = numpy.random.choice(sorted(list(posToRef.keys())),size=1, replace=False)
             bp1 = bps[0]
@@ -151,7 +152,7 @@ def makeExamples(myS, myB, myC, myD, myF, myT, mym, myM, myR, mySep):
 
         ### If the differences between the parents of our recombinant is above the threshold between all adjacent breakpoint pairs, keep it
         if len(myDiff) >= myT:
-            recSampleToLog[mySampleName] = [samples, bps]
+            recSampleToLog[mySampleName] = [samples, bps, myTotalDiff]
             if mym > 0: ### Add common mutations here, prior to making copies
                 myMuts = []
                 for m in range(0, mym):
@@ -164,10 +165,10 @@ def makeExamples(myS, myB, myC, myD, myF, myT, mym, myM, myR, mySep):
     sys.stderr.write("Finished generating recombinant sequences.\n")
 
     bpToHeader = {}
-    bpToHeader[1] = 'recombinant_sample\tparent1\tparent2\tbp1\n'
-    bpToHeader[2] = 'recombinant_sample\tparent1\tparent2\tbp1\tbp2\n'
-    bpToHeader[3] = 'recombinant_sample\tparent1\tparent2\tbp1\tbp2\tbp3\n'
-    bpToHeader[4] = 'recombinant_sample\tparent1\tparent2\tbp1\tbp2\tbp3\tbp4\n'
+    bpToHeader[1] = 'recombinant_sample\tparent1\tparent2\tgenetic_distance\tbp1\n'
+    bpToHeader[2] = 'recombinant_sample\tparent1\tparent2\tgenetic_distance\tbp1\tbp2\n'
+    bpToHeader[3] = 'recombinant_sample\tparent1\tparent2\tgenetic_distance\tbp1\tbp2\tbp3\n'
+    bpToHeader[4] = 'recombinant_sample\tparent1\tparent2\tgenetic_distance\tbp1\tbp2\tbp3\tbp4\n'
 
     ### Write our MSA, which we will use to create a VCF to add to the starting .pb via faToVcf and UShER
     myOutMSA = '>'+myRefName+'\n'+myReference+'\n'
@@ -355,7 +356,6 @@ if __name__ == "__main__":
     """
     main();
     raise SystemExit
-
 
 
 
