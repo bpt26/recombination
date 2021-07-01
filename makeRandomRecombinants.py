@@ -62,8 +62,7 @@ def makeExamples(myS, myB, myC, myD, myF, myT, mym, myM, myR, mySep):
             if not l.startswith('>'):
                 myReference = l.upper()
                 for i in range(0,len(myReference)):
-                    if myReference[i] != 'N':
-                        posToRef[i] = myReference[i]
+                    posToRef[i] = myReference[i]
             else:
                 myRefName = l[1:]
     sys.stderr.write("Finished reading in reference.\n")
@@ -152,7 +151,7 @@ def makeExamples(myS, myB, myC, myD, myF, myT, mym, myM, myR, mySep):
 
         ### If the differences between the parents of our recombinant is above the threshold between all adjacent breakpoint pairs, keep it
         if len(myDiff) >= myT:
-            recSampleToLog[mySampleName] = [samples, bps, myTotalDiff]
+            recSampleToLog[mySampleName] = [samples, len(myTotalDiff), myDiff, bps]
             if mym > 0: ### Add common mutations here, prior to making copies
                 myMuts = []
                 for m in range(0, mym):
@@ -165,10 +164,10 @@ def makeExamples(myS, myB, myC, myD, myF, myT, mym, myM, myR, mySep):
     sys.stderr.write("Finished generating recombinant sequences.\n")
 
     bpToHeader = {}
-    bpToHeader[1] = 'recombinant_sample\tparent1\tparent2\tgenetic_distance\tbp1\n'
-    bpToHeader[2] = 'recombinant_sample\tparent1\tparent2\tgenetic_distance\tbp1\tbp2\n'
-    bpToHeader[3] = 'recombinant_sample\tparent1\tparent2\tgenetic_distance\tbp1\tbp2\tbp3\n'
-    bpToHeader[4] = 'recombinant_sample\tparent1\tparent2\tgenetic_distance\tbp1\tbp2\tbp3\tbp4\n'
+    bpToHeader[1] = 'recombinant_sample\tparent1\tparent2\tgenetic_distance\tmutations_in_recomb_tract\tbp1\n'
+    bpToHeader[2] = 'recombinant_sample\tparent1\tparent2\tgenetic_distance\tmutations_in_recomb_tract\tbp1\tbp2\n'
+    bpToHeader[3] = 'recombinant_sample\tparent1\tparent2\tgenetic_distance\tmutations_in_recomb_tract\tbp1\tbp2\tbp3\n'
+    bpToHeader[4] = 'recombinant_sample\tparent1\tparent2\tgenetic_distance\tmutations_in_recomb_tract\tbp1\tbp2\tbp3\tbp4\n'
 
     ### Write our MSA, which we will use to create a VCF to add to the starting .pb via faToVcf and UShER
     myOutMSA = '>'+myRefName+'\n'+myReference+'\n'
