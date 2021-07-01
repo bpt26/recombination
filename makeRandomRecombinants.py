@@ -151,7 +151,7 @@ def makeExamples(myS, myB, myC, myD, myF, myT, mym, myM, myR, mySep):
 
         ### If the differences between the parents of our recombinant is above the threshold between all adjacent breakpoint pairs, keep it
         if len(myDiff) >= myT:
-            recSampleToLog[mySampleName] = [samples, len(myTotalDiff), myDiff, bps]
+            recSampleToLog[mySampleName] = [samples, bps, len(myTotalDiff), myDiff]
             if mym > 0: ### Add common mutations here, prior to making copies
                 myMuts = []
                 for m in range(0, mym):
