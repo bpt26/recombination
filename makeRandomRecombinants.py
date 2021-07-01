@@ -261,7 +261,10 @@ def minLen(l1, l2):
 def doubleJoiner(myList):
     myReturn = []
     for k in myList:
-        myReturn.append(joiner(k))
+        if type(k) == list:
+            myReturn.append(joiner(k))
+        else:
+            myReturn.append(k)
     return(joiner(myReturn))
 
 def replaceSymbols(myEntry):
