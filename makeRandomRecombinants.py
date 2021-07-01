@@ -151,13 +151,13 @@ def makeExamples(myS, myB, myC, myD, myF, myT, mym, myM, myR, mySep):
 
         ### If the differences between the parents of our recombinant is above the threshold between all adjacent breakpoint pairs, keep it
         if len(myDiff) >= myT:
-            recSampleToLog[mySampleName] = [samples, bps, len(myTotalDiff), myDiff]
+            recSampleToLog[mySampleName] = [joiner(samples), joiner(bps), len(myTotalDiff), len(myDiff)]
             if mym > 0: ### Add common mutations here, prior to making copies
                 myMuts = []
                 for m in range(0, mym):
                     mySeq, myMut = addMut(mySeq, numpy.random.choice(sorted(list(posToRef.keys())),size=1, replace=False)[0])
                     myMuts.append(myMut)
-                recSampleToLog[mySampleName].append(myMuts)
+                recSampleToLog[mySampleName].append(joiner(myMuts))
             recSampleToSeq[mySampleName] = mySeq
             recSampleToDiffBetweenBps[mySampleName] = myDiff
             sys.stderr.write("Generated "+str(len(recSampleToSeq.keys()))+" recombinant sequences.\n")
