@@ -314,7 +314,7 @@ def main(myCommandLine=None):
         myC = myCommandLine.args.copies
     else:
         myC = 10
-    if myCommandLine.args.threshold:
+    if str(myCommandLine.args.threshold):
         myT = myCommandLine.args.threshold
     else:
         myT = 10
