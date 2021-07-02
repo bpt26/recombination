@@ -110,15 +110,13 @@ def makeExamples(myS, myB, myC, myD, myF, myT, mym, myM, myR, mySep):
             sampleToSeq[s2] = addMuts(myReference, nodeToDiffs[s2])
 
         ### Create recombinant sequence from our two samples
-        print(sorted(list(posToRef.keys())))
-        print(len(sorted(list(posToRef.keys()))))
         myTotalDiff = getDiff(sampleToSeq[s1],sampleToSeq[s2], 0)
         if myB == 1:
             bps = numpy.random.choice(sorted(list(posToRef.keys())),size=1, replace=False)
             bp1 = bps[0]
             mySeq = sampleToSeq[s1][:bp1]+sampleToSeq[s2][bp1:]
             myDiff = minLen(getDiff(sampleToSeq[s1][:bp1], sampleToSeq[s2][:bp1], 0), getDiff(sampleToSeq[s1][bp1:], sampleToSeq[s2][bp1:], bp1))
-            #print(myDiff)
+            print(myDiff)
         elif myB == 2:
             bps = sorted(numpy.random.choice(sorted(list(posToRef.keys())),size=2, replace=False))
             while bps[1]-bps[0] <= 1000:
