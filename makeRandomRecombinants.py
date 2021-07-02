@@ -116,7 +116,7 @@ def makeExamples(myS, myB, myC, myD, myF, myT, mym, myM, myR, mySep):
             bp1 = bps[0]
             mySeq = sampleToSeq[s1][:bp1]+sampleToSeq[s2][bp1:]
             myDiff = minLen(getDiff(sampleToSeq[s1][:bp1], sampleToSeq[s2][:bp1], 0), getDiff(sampleToSeq[s1][bp1:], sampleToSeq[s2][bp1:], bp1))
-            print(myDiff)
+            print(myDiff, myT)
         elif myB == 2:
             bps = sorted(numpy.random.choice(sorted(list(posToRef.keys())),size=2, replace=False))
             while bps[1]-bps[0] <= 1000:
