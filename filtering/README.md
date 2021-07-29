@@ -1,4 +1,6 @@
-This directory contains scripts used for filtering false positives by various methods.
+# Recombination Filtering
+
+This directory contains scripts used for filtering false positives by various methods. Note that some scripts contain hard-coded directories that would require editing to run in the user's environment.
 
 We first ran findRecombination on each node in the protobuf, using a heavily parallelized set of commands following the formula: `findRecombination -i optimized-large-radius-pruneCatExcludeB30.usher.no-long-branches.pb -n 2 -S <start_node> -E <end_node> -d <node_dir> -T 4 2> <node_log>`, then combined our results using the following commands:
 
