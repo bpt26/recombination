@@ -30,15 +30,6 @@ Options:
 - -r (--reference): Fasta file containing reference genome for use in creating VCF. (Default = 'wuhan.ref.fa').  
 - -S (--separate): If enabled, will produce one MSA as a .fasta file for each set of recombinants to the argument directory. If not enabled, will not produce these files.  
 
-### parseRecombinationResults.py
-reads in results from findRecombination, as well as the log and msa corresponding to the recombinant sequences, and prints the recombinant samples whose breakpoint was predicted incorrectly.  
-Options:
-- -f (--fasta): Fasta file containing sequences for recombinant genomes. [REQUIRED]  
-- -l (--log): Log file containing recombinant genomes. Format: recombinantSample sample1 sample2 bp1 (bp2).... [REQUIRED]  
-- -d (--descendants): Descendants file output by findRecombination. (Default = 'descendants.tsv').  
-- -r (--recombination): Recombination file output by findRecombination. (Default = 'recombination.tsv').  
-- -b (--breakpoints): Number of breakpoints that each recombinant sample has. Must be 1 or 2 (Default = 1).  
-
 ## Example pipeline:
 
 ```
@@ -48,5 +39,4 @@ python makeRandomRecombinants.py -b 1 -s 100 -c 10 -t 10 -d allNodeToMutsT10.txt
 faToVcf recombination_1.msa.fa recombination_1.msa.vcf
 usher -i input.pb -v recombination_1.msa.vcf -o recombination_1.msa.pb
 findRecombination -i recombination_1.msa.pb
-python parseRecombinationResults.py -f recombination_1.msa.fa -l recombination_1.log -d descendants.tsv -r recombination.tsv -b 1
 ```
