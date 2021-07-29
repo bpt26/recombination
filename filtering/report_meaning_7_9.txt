@@ -1,0 +1,112 @@
+False is good, True is bad
+
+sequence always refers to the consensus sequence made from 1 or more samples
+
+an INDEL or bad read is defined as a '-' or 'n' that appears on any sequence, unless a '-' appears on all three
+
+
+1: recomb_node_id
+2: donor_node_id
+3: acceptor_node_id
+4: should check - boolean flag
+
+    True if any of the other boolean flags are true
+
+5: Not enough acceptor matches - boolean flag
+
+    True if pre_b1_skew <= 0 and post_b2_skew <= 0
+
+6: Not enough donor matches - boolean flag
+
+    True if btw_b1_b2_skew <= 0
+
+7: Unnecessary breakpoint - boolean flag
+
+    True if (pre_b1_skew < 0 and post_b2_skew > 0) or (pre_b1_skew > 0 and post_b2_skew < 0)
+
+8: pre_b1_skew - integer
+
+    Number of good mutations the recombinant has in common with the acceptor,
+    minus the number of good mutations the recombinant has in common with the donor,
+    in the region before breakpoint 1,
+    where a good mutation is one that is at least 2 bp away from any INDEL or bad read on all three sequences.
+
+9: btw_b1_b2_skew - integer
+
+    Number of good mutations the recombinant has in common with the donor,
+    minus the number of good mutations the recombinant has in common with the acceptor,
+    in the region between breakpoint 1 and 2,
+    where a good mutation is one that is at least 2 bp away from any INDEL or bad read on all three sequences.
+
+10: post_b2_skew - integer
+
+    Number of good mutations the recombinant has in common with the acceptor,
+    minus the number of good mutations the recombinant has in common with the donor,
+    in the region after breakpoint 2,
+    where a good mutation is one that is at least 2 bp away from any INDEL or bad read on all three sequences.
+
+11: Too many mutations near INDELs - boolean flag
+
+    True if 6 or more mutations are less than 2 bp away from an INDEL or bad read,
+    or if 1 or more mutations are exactly on an INDEL or bad read,
+    or if a mutation is at most 5 bp away from an INDEL or bad read with a size of at least 5 bp
+
+12: Mutations close to INDELs - natural number
+
+    Number of mutations which are less than 2 bp away from an INDEL or bad read on all three sequences.
+
+13: Mutations on INDELs - natural number
+
+    Number of mutations which are exactly on an INDEL or bad read on all three sequences.
+
+14: Suspicious mutation clump - boolean flag
+
+    True if theres a stretch of 20 bps with 6 or more mutations on a single sequence,
+    or if theres a stretch of 20 bps with 3 or more mutations on a single sequence and one is at most 5 bp away from an INDEL or bad read with a size of at least 10 bp.
+
+15: Mutations clumped - natural number
+
+    Most mutations in any stretch of 20 bps on a single sequence
+
+16: Clump site - alignment coordinate
+
+    Closing point of the stretch of 20 bps which contained the most mutations
+
+17: Clump in - string
+
+    Which sequence had the most mutations in any stretch of 20 bps on a single sequence
+
+18: Size of INDEL near clump - natural number
+
+    Width of INDEL or bad read thats at most 5 bp away from the stretch of 20 bps which contained the most mutations.
+
+19: Informative sites clump - boolean flag
+
+    True if theres a stretch of 20 bps with 6 or more informative sites on any sequence.
+
+20: Informative sites clumped - natural number
+
+    Most informative sites in any stretch of 20 bps on any node
+
+21: Site of informative sites clump - alignment coordinate
+
+    Closing point of the stretch of 20 bps which contained the most informative sites
+
+22: INDEL in the wrong region - boolean flag
+
+    True if a large INDEL does not appear in the recombinant, and
+        it does appear in the acceptor, when in the region before breakpoint 1, or
+        it does appear in the donor, when in the region between breakpoints 1 and 2, or
+        it does appear in the acceptor, when in the region after breakpoint 2
+    a large INDEL is defined as a stretch of 11 bps which are either '-' or 'n', centered around a mutation
+
+23: breakpoint-1_interval
+24: breakpoint-2_interval
+25: original_parsimony
+26: min_starting_parsimony
+27: recomb_parsimony
+28: rob_pval
+29: russ_pval
+30: Parsimony change rank
+
+    If you order all possible recombinant events by change in parsimony, this is the rank of the event with these three nodes
