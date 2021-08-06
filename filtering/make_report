@@ -1,0 +1,2 @@
+cp empty_report.txt report.txt
+ls fastas/AlignedRecombs | parallel -j 60 python3 checkmutant.py {.} -r 

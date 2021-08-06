@@ -1,0 +1,50 @@
+False is good, True is bad
+
+recomb_node_id
+donor_node_id
+acceptor_node_id
+should check
+    True if any of the other flags are true,
+    or if 'Mutations close to INDEL' > 5
+    or if 'Mutations clumped' > 5
+Breakpoints near edge
+    True if the opening point of breakpoint 1 is < 100,
+    and the closing point of breakpoint 2 is > 29700
+breakpoints near eatchother
+    True if the closing point of breakpoint 1 and the opening point of breakpoint 2 are at most 100 away
+pre_b1_skew
+    Number of mutations the recombinant matches with the acceptor,
+    minus the number of mutations the recombinant matches with the donor,
+    in the region before breakpoint 1
+btw_b1_b2_skew
+    Number of mutations the recombinant matches with the donor,
+    minus the number of mutations the recombinant matches with the acceptor,
+    in the region between breakpoint 1 and 2
+post_b2_skew
+    Number of mutations the recombinant matches with the acceptor,
+    minus the number of mutations the recombinant matches with the donor,
+    in the region after breakpoint 2
+not_enough_pre_b1_skew
+    True if pre_b1_skew < 0
+    of if pre_b1_skew < 1 and the region before breakpoint 1 is at least 500 bps
+not_enough_btw_b1_b2_skew
+    True if btw_b1_b2_skew < 0
+    of if btw_b1_b2_skew < 1 and the region between breakpoint 1 and 2 is at least 500 bps
+not_enough_post_b2_skew
+    True if post_b2_skew < 0
+    of if post_b2_skew < 1 and the region after breakpoint 2 is at least 500 bps
+Mutations close to INDEL
+    Number of mutations which are less than 2 bps away from a '-' or 'n' 
+    in the consesnsus seq of the recombinant, the donor, or the acceptor
+Mutations clumped
+    Greatest number of mutations which occur in any window with a width of 20 bps
+Mutation clump site
+    Closing point of the window of width 20 which contained 'Mutations_clumped' number of mutations
+INDEL in the wrong region
+    True if a large INDEL does not appear in the recombinant, and
+        it does appear in the acceptor, when in the region before breakpoint 1, or
+        it does appear in the donor, when in the region between breakpoints 1 and 2, or
+        it does appear in the acceptor, when in the region after breakpoint 2
+    a large INDEL is defined as a stretch of 11 bps which are either '-' or 'n', centered around a mutation
+Parsimony change rank
+    If you order all possible recombinant events by change in parsimony, this is the rank of the event with these three nodes

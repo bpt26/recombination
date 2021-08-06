@@ -1,0 +1,2 @@
+cd fastas/OrderedRecombs
+ls . |  parallel -j 60  "mafft --auto {} > ../AlignedRecombs/{} "

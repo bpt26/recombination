@@ -778,10 +778,6 @@ for i in range(len(acceptor_mutations)):
         lower_index_of_most_mutations = temp_lower_index
         index_of_most_mutations = i
         most_clumps_in = "acceptor"
-
-
-                                                                    
-
                                                                     #
 #####################################################################
 
@@ -967,12 +963,12 @@ print("Suspicious mutation clump")
 print("Mutations clumped") #
 print("Mutation clump site") #
 print("Clump in") #
+print("Size of INDEL near clump") #
 
 print("Informative sites clump")
 print("Informative sites clumped")
 print("site of informative sites clump")
 
-print("Size of INDEL near clump") #
 print("INDEL in the wrong region") #
 print(labels[1])
 print(labels[2])

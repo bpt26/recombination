@@ -1,0 +1,6 @@
+cd OrderedRecombs
+rm -f *.fa
+cd ..
+cd AlignedRecombs
+rm -f *.fa
+

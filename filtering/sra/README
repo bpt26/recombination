@@ -1,0 +1,10 @@
+This directory is where raw reads are retrieved and stored to be manually examined 
+
+The following command retrieves a raw read
+------------------------------------------
+
+./getandpack [Accession]
+	
+	This will retrieve the raw reads from the sra database,
+	It will align those raw reads to the reference,
+	And then produce a bam and bam index for those reads

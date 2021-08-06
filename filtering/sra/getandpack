@@ -1,0 +1,32 @@
+if [ ! -z "$1" ]
+then
+	rm -i -r -f $1/
+	fasterq-dump --split-files $1
+	mkdir $1
+	cp $1*.fastq $1
+	rm $1*.fastq
+
+
+	cd $1
+	cat $1* > temp
+	rm $1*
+	cp temp $1.fastq
+	rm temp
+	cd ..
+
+
+	minimap2 -ax map-ont reference.fa $1/$1.fastq > outbam/$1.sam
+
+	cd outbam
+	samtools view -S -b $1.sam > $1.bam
+	echo "Created bam"
+	samtools sort $1.bam -o $1.sorted.bam
+	echo "Sorted bam"
+	samtools index $1.sorted.bam
+	echo "Created index"
+	rm $1.sam
+	rm $1.bam
+	cd ..
+
+	rm -r $1/
+fi
