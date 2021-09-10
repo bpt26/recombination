@@ -57,7 +57,7 @@ def getAllNodes():
 
     myOutString = ''
     for k in sorted(myNodes.keys()):
-        myOutString += str(k)+'\n'
+        myOutString += 'node_'+str(k)+'\n'
     open('allRelevantNodes.txt','w').write(myOutString)
 
 ##########################
