@@ -33,7 +33,7 @@ def getAllNodes():
 
     alreadyGotParent = {}
     lineCounter = 0
-    with open('optimized-large-radius-pruneCatExcludeB30.usher.no-long-branches.sample-paths.txt') as f:
+    with open('sample_paths.txt') as f:
         for line in f:
             lineCounter += 1
             splitLine = (line.strip()).split('\t')
@@ -96,14 +96,3 @@ if __name__ == "__main__":
     """
     main();
     raise SystemExit
-
-
-
-
-
-
-
-
-
-
-
