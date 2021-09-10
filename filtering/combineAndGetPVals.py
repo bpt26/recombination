@@ -23,6 +23,14 @@ def catOnlyBest():
         for line in f:
             splitLine = (line.strip()).split('\t')
             if not splitLine[0].startswith('#'):
+
+                ### REPLACE TEXT
+                if 'GENOME_SIZE' in splitLine[2]:
+                    splitLine[2] = splitLine[2].replace('GENOME_SIZE', '29903')
+                for i in [0,3,6]:
+                    if 'node_' in splitLine[i]:
+                        splitLine[i] = splitLine[i].replace('node_', '')
+
                 if not str(splitLine[0]) in nodeToLines:
                     nodeToLines[str(splitLine[0])] = []
                     nodeToMinStart[str(splitLine[0])] = int(splitLine[-2])
@@ -276,7 +284,6 @@ if __name__ == "__main__":
     """
     main();
     raise SystemExit
-
 
 
 
