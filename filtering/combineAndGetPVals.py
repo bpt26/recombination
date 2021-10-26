@@ -19,7 +19,7 @@ import re
 def catOnlyBest():
     nodeToLines = {}
     nodeToMinStart = {}
-    with open('catRecombination.tsv') as f:
+    with open('catRecombination.txt') as f:
         for line in f:
             splitLine = (line.strip()).split('\t')
             if not splitLine[0].startswith('#'):
