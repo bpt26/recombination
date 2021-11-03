@@ -16,7 +16,6 @@ import re
 - for each recombinant node, get the sites where it matches one parent but not the other
 - however, if a recombinant node does not match a parent, and that parent was placed as a sibling,
 check to see if the grandparent on that side matches the recombinant node. if it does, act as if it matches the parent.
-
 """
 
 ##########################
@@ -63,6 +62,8 @@ def getABABA():
             splitLine = (line.strip()).split('\t')
             if splitLine[0] == '#CHROM':
                 for i in range(9,len(splitLine)):
+                    if 'node_' in splitLine[i]:
+                        splitLine[i] = splitLine[i].split('_')[-1]
                     indexToNode[i] = int(splitLine[i])
                     nodeToIndex[int(splitLine[i])] = i
                     if int(splitLine[i]) in recombToParents:
@@ -164,14 +165,5 @@ if __name__ == "__main__":
     """
     main();
     raise SystemExit
-
-
-
-
-
-
-
-
-
 
 
