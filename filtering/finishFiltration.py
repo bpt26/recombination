@@ -488,6 +488,10 @@ def main():
     addPVals()
     combinePValueFiles()
     addInfSites()
+    checkClusters()
+    applyPval()
+    doNewTiebreakers()
+    removeRedundantTrios()
 
 
 if __name__ == "__main__":
