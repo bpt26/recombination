@@ -33,7 +33,7 @@ def getAllNodes():
 
     alreadyGotParent = {}
     lineCounter = 0
-    with open('sample_paths.txt') as f:
+    with open('/scratch/bryan/RECOMB/NEWEST_RUN/optimized-large-radius-pruneCatExcludeB30.usher.no-long-branches.sample-paths.txt') as f:
         for line in f:
             lineCounter += 1
             splitLine = (line.strip()).split('\t')
@@ -57,7 +57,7 @@ def getAllNodes():
 
     myOutString = ''
     for k in sorted(myNodes.keys()):
-        myOutString += 'node_'+str(k)+'\n'
+        myOutString += str(k)+'\n'
     open('allRelevantNodes.txt','w').write(myOutString)
 
 ##########################
@@ -96,3 +96,14 @@ if __name__ == "__main__":
     """
     main();
     raise SystemExit
+
+
+
+
+
+
+
+
+
+
+
