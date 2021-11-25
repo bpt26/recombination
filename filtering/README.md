@@ -34,7 +34,7 @@ awk '{print "node_"$0}' allRelevantNodes.txt > allRelevantNodeNames.txt
 matUtils extract -i optimized-large-radius-pruneCatExcludeB30.usher.no-long-branches.pb -s allRelevantNodes.txt -v allRelevantNodes.vcf -T 10  
 python getABABA.py  
 python getDescendants.py   
-python getSampleInfo.py  
+python makeSampleInfo.py  
 
 # Check each trio for sequence quality and filter dubious trios (Note: This requires access to GISAID and curation/alignment of raw reads)   
 python checkmutant.py <trio-number> -r  
