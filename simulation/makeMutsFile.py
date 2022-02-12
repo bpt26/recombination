@@ -187,6 +187,8 @@ def main(myCommandLine=None):
         myL = myCommandLine.args.leaves
     if myCommandLine.args.threshold:
         myT = int(myCommandLine.args.threshold)
+        if myT == 0:
+            myL = ''
     else:
         myT = 10
     if myCommandLine.args.ref:
